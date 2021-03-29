@@ -54,7 +54,7 @@ public class Historico implements Serializable {
     private Date fechaPrestamo;
     @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private Usuario usuarioId;
+    private UsuarioDomain usuarioId;
     @JoinColumn(name = "ejemplar_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private EjemplarDomain ejemplarId;
@@ -98,11 +98,11 @@ public class Historico implements Serializable {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public Usuario getUsuarioId() {
+    public UsuarioDomain getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Usuario usuarioId) {
+    public void setUsuarioId(UsuarioDomain usuarioId) {
         this.usuarioId = usuarioId;
     }
 
