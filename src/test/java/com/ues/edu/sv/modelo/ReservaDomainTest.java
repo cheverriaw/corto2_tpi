@@ -12,6 +12,7 @@ import junit.framework.TestCase;
  * @author william
  */
 public class ReservaDomainTest extends TestCase {
+    ReservaDomain a1 =new ReservaDomain();
     
     public ReservaDomainTest(String testName) {
         super(testName);
@@ -34,7 +35,7 @@ public class ReservaDomainTest extends TestCase {
         System.out.println("getLibro");
         ReservaDomain instance = new ReservaDomain();
         LibroDomain expResult = null;
-        LibroDomain result = instance.getLibro();
+        LibroDomain result = a1.getLibro();
         assertEquals(expResult, result);
      
     }
@@ -46,7 +47,7 @@ public class ReservaDomainTest extends TestCase {
         System.out.println("setLibro");
         LibroDomain libro = null;
         ReservaDomain instance = new ReservaDomain();
-        instance.setLibro(libro);
+        a1.setLibro(libro);
     
     }
 
@@ -57,7 +58,7 @@ public class ReservaDomainTest extends TestCase {
         System.out.println("getEstado");
         ReservaDomain instance = new ReservaDomain();
         EstadoHistorico expResult = null;
-        EstadoHistorico result = instance.getEstado();
+        EstadoHistorico result = null;
         assertEquals(expResult, result);
      
     }
