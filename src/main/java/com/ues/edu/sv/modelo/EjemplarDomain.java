@@ -24,83 +24,96 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table (name = "ejemplar")
+@Table(name = "ejemplar")
 public class EjemplarDomain extends DomainObject {
-private static final long serialVersionUID = 1L;
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id ;
-private String idEjemplar;
-@Enumerated (EnumType.STRING)
-@Column (columnDefinition= "enum ('SALA','CASA ','DEPARTAMENTO' )", nullable=false)
-private Localizacion localizacion;
-@Temporal(TemporalType.DATE) 
-private Date fechaAdquisicion;
-private String observaciones;
-@Temporal(TemporalType .DATE)
-private Date fechaPrestamo;
-@Temporal (TemporalType .DATE) private Date fechaDevolucion;
-@ManyToOne
-@JoinColumn (nullable = false) private LibroDomain libro;
 
-@OneToOne
-private UsuarioDomain usuario;
-@OneToMany (mappedBy = "ejemplar ")
-private Set<PrestamoHistoricoDomain> prestamosHistoricos =
-new HashSet<PrestamoHistoricoDomain>() ;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String idEjemplar;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "enum ('SALA','CASA ','DEPARTAMENTO' )", nullable = false)
+    private Localizacion localizacion;
+    @Temporal(TemporalType.DATE)
+    private Date fechaAdquisicion;
+    private String observaciones;
+    @Temporal(TemporalType.DATE)
+    private Date fechaPrestamo;
+    @Temporal(TemporalType.DATE)
+    private Date fechaDevolucion;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private LibroDomain libro;
 
-private EjemplarDomain() {}
+    @OneToOne
+    private UsuarioDomain usuario;
+    @OneToMany(mappedBy = "ejemplar ")
+    private Set<PrestamoHistoricoDomain> prestamosHistoricos
+            = new HashSet<PrestamoHistoricoDomain>();
 
-public EjemplarDomain(LibroDomain libro, String idEjemplar) {
+    private EjemplarDomain() {
+    }
+
+    public EjemplarDomain(LibroDomain libro, String idEjemplar) {
         super();
-this.libro = libro;    
-this .idEjemplar = idEjemplar ;
-this .localizacion = Localizacion.SALA;
+        this.libro = libro;
+        this.idEjemplar = idEjemplar;
+        this.localizacion = Localizacion.SALA;
+    }
+
+    public Long getId() {
+
+        return id;
+    }
+
+    public EstadoEjemplar getEstado() {
+        if (usuario == null) {
+            return EstadoEjemplar.DISPONIBLE;
+        } else {
+            return EstadoEjemplar.PRESTADO;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((idEjemplar == null) ? 0 : idEjemplar.hashCode());
+        result = prime * result
+                + ((libro == null) ? 0 : libro.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        EjemplarDomain other = (EjemplarDomain) obj;
+
+        if (idEjemplar == null) {
+            if (other.idEjemplar != null) {
+                return false;
+            }
+        } else if (!idEjemplar.equals(other.idEjemplar)) {
+            return false;
+        }
+        if (libro == null) {
+            if (other.libro != null) {
+                return false;
+            }
+        } else if (!libro.equals(other.libro)) {
+            return false;
+        }
+        return true;
+    }
 }
-
-public Long getId (){
-    
-    return id;
-}
-
-
-public EstadoEjemplar getEstado() {
- if (usuario == null)
-return EstadoEjemplar.DISPONIBLE; 
- else
-return EstadoEjemplar.PRESTADO;
-}
-
-@Override
-public int hashCode (){
-    final int prime = 31;
- int result = 1;
-result = prime*result
-+ ((idEjemplar == null) ? 0 : idEjemplar.hashCode());
-result = prime * result
-+  ((libro == null) ? 0 : libro.hashCode ());
-return result;
-}
-
-@Override
-public boolean equals(Object obj) { 
-    if (this == obj)
-return true; 
-    if (obj == null)
-return false;
-if (getClass () != obj.getClass ())
-    return false;
- 
-EjemplarDomain other = (EjemplarDomain) obj;
- 
-if(idEjemplar == null) {
-if (other.idEjemplar != null) return false;
-} else if (!idEjemplar .equals (other.idEjemplar) ) return false;
-if (libro == null) {
-if (other .libro != null) return false;
-} else if (!libro.equals (other .libro)) return false;
-return true;
-}
-}
-
-
