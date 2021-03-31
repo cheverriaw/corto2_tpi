@@ -27,6 +27,8 @@ this.setLogin (login); this.setPassword(password);
 this.setEstado (EstadoUsuario.ACTIVO);
 }
 
+   
+  
     public String getDepartamento() {
         return departamento;
     }

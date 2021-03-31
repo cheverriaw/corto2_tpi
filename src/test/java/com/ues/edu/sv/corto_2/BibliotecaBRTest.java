@@ -19,53 +19,45 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BibliotecaBRTest {
 
-  @Test
-  public void testCalculaNumDiasReservaProfesor(){
-      int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasReserva(new ProfesorDomain("pedro.garcia", "1234"));
-      assertEquals(30,diasProfesor);
-  }
-  
-   public void testCalculaNumDiasReservaAlumno(){
-      int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasReserva(new AlumnoDomain("alexis.garcia", "1234"));
-      assertEquals(7,diasProfesor);
-  }
-  
-  
-  
-  public void testCalculaNumDiasPrestamoProfesor(){
-      int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasPrestamo(new ProfesorDomain("pedro.garcia", "1234"));
-      assertEquals(30,diasProfesor);
-  }
-  
-  public void testCalculaNumDiasPrestamoAlumno(){
-      int diasAlumno = BibliotecaBR.getInstance().calculaNumDiasPrestamo(new AlumnoDomain("alexis.garcia", "1234"));
-      assertEquals(7,diasAlumno);
-  }
-  
-  public void testCompruebaCupoOperacionesProfesorCorrecto(){
-      try{
-      ProfesorDomain profesor = new ProfesorDomain ("pedro.garcia", "1234");
-      BibliotecaBR.getInstance().compruebaCupoOperaciones(profesor, 8);
-     
-      
-      }catch (BibliotecaException e){
-          fail("No deberia de fallar");
-      }
-  }
-  
-  
-  
-   public void testCompruebaCupoOperacionesAlumnoCorrecto(){
-      try{
-      AlumnoDomain alumno = new AlumnoDomain ("alexis.garcia", "1234");
-      BibliotecaBR.getInstance().compruebaCupoOperaciones(alumno, 5);
-    
-      
-      }catch (BibliotecaException e){
-          fail("No deberia de fallar");
-      }
-  }
-   
-  
+    @Test
+    public void testCalculaNumDiasReservaProfesor() {
+        int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasReserva(new ProfesorDomain("pedro.garcia", "1234"));
+        assertEquals(30, diasProfesor);
+    }
+
+    public void testCalculaNumDiasReservaAlumno() {
+        int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasReserva(new AlumnoDomain("alexis.garcia", "1234"));
+        assertEquals(7, diasProfesor);
+    }
+
+    public void testCalculaNumDiasPrestamoProfesor() {
+        int diasProfesor = BibliotecaBR.getInstance().calculaNumDiasPrestamo(new ProfesorDomain("pedro.garcia", "1234"));
+        assertEquals(30, diasProfesor);
+    }
+
+    public void testCalculaNumDiasPrestamoAlumno() {
+        int diasAlumno = BibliotecaBR.getInstance().calculaNumDiasPrestamo(new AlumnoDomain("alexis.garcia", "1234"));
+        assertEquals(7, diasAlumno);
+    }
+
+    public void testCompruebaCupoOperacionesProfesorCorrecto() {
+        try {
+            ProfesorDomain profesor = new ProfesorDomain("pedro.garcia", "1234");
+            BibliotecaBR.getInstance().compruebaCupoOperaciones(profesor, 8);
+
+        } catch (BibliotecaException e) {
+            fail("No deberia de fallar");
+        }
+    }
+
+    public void testCompruebaCupoOperacionesAlumnoCorrecto() {
+        try {
+            AlumnoDomain alumno = new AlumnoDomain("alexis.garcia", "1234");
+            BibliotecaBR.getInstance().compruebaCupoOperaciones(alumno, 5);
+
+        } catch (BibliotecaException e) {
+            fail("No deberia de fallar");
+        }
+    }
 
 }
