@@ -32,6 +32,7 @@ public class AlumnoDomainTest extends TestCase {
      * Test of getTutor method, of class AlumnoDomain.
      */
     public void testGetTutor() {
+        a1.setTutor("pedro");
         System.out.println("getTutor");
         String expResult = "pedro";
         String result = a1.getTutor();
@@ -45,7 +46,7 @@ public class AlumnoDomainTest extends TestCase {
     public void testSetTutor() {
         System.out.println("setTutor");
         String tutor = "pedro";
-        AlumnoDomain instance = null;
+        AlumnoDomain instance =null;
         a1.setTutor(tutor);
        
     }
